@@ -1,4 +1,4 @@
-add_library(priority_queue priority_queue.cpp)
+add_library(queue_p queue_p.cpp)
 
-add_executable(priority_queue_test priority_queue_test.cpp)
-target_link_libraries(priority_queue_test priority_queue)
+add_executable(queue_p_test queue_p_test.cpp)
+target_link_libraries(queue_p_test queue_p)

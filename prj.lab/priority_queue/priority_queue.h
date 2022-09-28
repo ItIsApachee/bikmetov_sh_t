@@ -5,18 +5,18 @@
 
 class QueueP {
 private:
-    class QueueR {
+    class Node {
     public:
-        QueueR(int value, std::unique_ptr<QueueR> next = nullptr): value{value}, next(move(next)) {}
-        QueueR(const QueueR&) = delete;
-        QueueR(QueueR&&) = default;
-        QueueR& operator=(const QueueR&) = delete;
-        QueueR& operator=(QueueR&&) = default;
+        Node(int value, std::unique_ptr<Node> next = nullptr): value{value}, next(move(next)) {}
+        Node(const Node&) = delete;
+        Node(Node&&) = default;
+        Node& operator=(const Node&) = delete;
+        Node& operator=(Node&&) = default;
 
-        ~QueueR() = default;
+        ~Node() = default;
 
         int value{0};
-        std::unique_ptr<QueueR> next{nullptr};
+        std::unique_ptr<Node> next{nullptr};
     };
 
 public:
@@ -34,7 +34,7 @@ public:
     ~QueueP() = default;
 
 private:
-    std::unique_ptr<QueueR> head{nullptr};
+    std::unique_ptr<Node> head{nullptr};
 };
 
 #endif

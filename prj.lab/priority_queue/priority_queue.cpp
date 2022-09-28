@@ -12,23 +12,23 @@ QueueP& QueueP::operator=(const QueueP&) {
 
 void QueueP::push(int value) {
     if (empty()) {
-        head = std::unique_ptr<QueueR>(new QueueR(value));
+        head = std::unique_ptr<Node>(new Node(value));
         return;
     }
 
     if (head->value > value) {
-        std::unique_ptr<QueueR> node = std::make_unique<QueueR>(value, move(head));
+        std::unique_ptr<Node> node = std::make_unique<Node>(value, move(head));
         head = move(node);
         return;
     }
 
-    std::unique_ptr<QueueR>* current = &head;
+    std::unique_ptr<Node>* current = &head;
     while ((*current)->next && (*current)->next->value <= value) {
         current = &(*current)->next;
     }
 
     // either (*current)->next is nullptr, or (*current)->next->value > value
-    std::unique_ptr<QueueR> node = std::make_unique<QueueR>(value, move((*current)->next));
+    std::unique_ptr<Node> node = std::make_unique<Node>(value, move((*current)->next));
     (*current)->next = move(node);
 }
 
@@ -38,7 +38,7 @@ int QueueP::pop() {
     }
     int result = head->value;
 
-    std::unique_ptr<QueueR> old_head(move(head));
+    std::unique_ptr<Node> old_head(move(head));
     head = move(old_head->next);
 
     return result;

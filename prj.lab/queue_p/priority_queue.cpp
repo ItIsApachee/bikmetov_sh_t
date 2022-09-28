@@ -1,4 +1,4 @@
-#include <priority_queue/priority_queue.h>
+#include <queue_p/priority_queue.h>
 #include <memory>
 #include <stdexcept>
 

@@ -5,7 +5,7 @@
 #include <random>
 #include <algorithm>
 
-#include <priority_queue/priority_queue.h>
+#include <queue_p/priority_queue.h>
 
 namespace Util {
     using It = std::vector<int>::const_iterator;

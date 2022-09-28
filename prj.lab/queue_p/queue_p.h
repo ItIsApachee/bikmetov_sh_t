@@ -21,9 +21,9 @@ private:
 
 public:
     QueueP() = default;
-    QueueP(const QueueP&);
+    QueueP(const QueueP&) = delete; // no requirements to implement this
     QueueP(QueueP&&) = default;
-    QueueP& operator=(const QueueP&);
+    QueueP& operator=(const QueueP&) = delete; // no requirement to implement this
     QueueP& operator=(QueueP&&) = default;
 
     void push(int);

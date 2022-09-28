@@ -2,14 +2,6 @@
 #include <memory>
 #include <stdexcept>
 
-QueueP::QueueP(const QueueP&) {
-    throw;
-}
-
-QueueP& QueueP::operator=(const QueueP&) {
-    throw;
-}
-
 void QueueP::push(int value) {
     if (empty()) {
         head = std::unique_ptr<Node>(new Node(value));

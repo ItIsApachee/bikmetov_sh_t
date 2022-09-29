@@ -14,14 +14,14 @@ void QueueP::push(int value) {
         return;
     }
 
-    std::unique_ptr<Node>* current = &head;
-    while ((*current)->next && (*current)->next->value <= value) {
-        current = &(*current)->next;
+    Node* current = head.get();
+    while (current->next && current->next->value <= value) {
+        current = current->next.get();
     }
 
     // either (*current)->next is nullptr, or (*current)->next->value > value
-    std::unique_ptr<Node> node = std::make_unique<Node>(value, move((*current)->next));
-    (*current)->next = move(node);
+    std::unique_ptr<Node> node = std::make_unique<Node>(value, move(current->next));
+    current->next = move(node);
 }
 
 int QueueP::pop() {

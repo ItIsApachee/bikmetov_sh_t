@@ -1,9 +1,32 @@
 #include <queue_p/queue_p.h>
 #include <memory>
 #include <stdexcept>
+#include <utility>
+
+QueueP::QueueP(const QueueP& other) {
+    if (other.isEmpty())
+        return;
+    head = std::make_unique<Node>(other.head->value);
+
+    Node* other_ptr = other.head.get();
+    Node* ptr = head.get();
+    while (other_ptr->next) {
+        ptr->next = std::make_unique<Node>(other_ptr->next->value);
+
+        ptr = ptr->next.get();
+        other_ptr = other_ptr->next.get();
+    }
+}
+
+QueueP& QueueP::operator=(const QueueP& other) {
+    if (&other == this)
+        return *this;
+    
+    return *this = std::move(QueueP(other));
+}
 
 void QueueP::push(int value) {
-    if (empty()) {
+    if (isEmpty()) {
         head = std::unique_ptr<Node>(new Node(value));
         return;
     }
@@ -25,7 +48,7 @@ void QueueP::push(int value) {
 }
 
 int QueueP::pop() {
-    if (empty()) {
+    if (isEmpty()) {
         throw std::out_of_range("can't pop from an empty queue");
     }
     int result = head->value;
@@ -36,7 +59,7 @@ int QueueP::pop() {
     return result;
 }
 
-bool QueueP::empty() {
+bool QueueP::isEmpty() const {
     // if head is nullptr, then true
     // else false
     return !head;

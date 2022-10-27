@@ -21,15 +21,15 @@ private:
 
 public:
     QueueP() = default;
-    QueueP(const QueueP&) = delete; // no requirements to implement this
+    QueueP(const QueueP&);
     QueueP(QueueP&&) = default;
-    QueueP& operator=(const QueueP&) = delete; // no requirement to implement this
+    QueueP& operator=(const QueueP&);
     QueueP& operator=(QueueP&&) = default;
 
     void push(int);
     // returns smallest element if !this.empty() or throws exception otherwise
     int pop();
-    bool empty();
+    bool isEmpty() const;
 
     ~QueueP() = default;
 

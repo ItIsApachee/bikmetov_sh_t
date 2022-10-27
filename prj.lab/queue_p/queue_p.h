@@ -27,9 +27,10 @@ public:
     QueueP& operator=(QueueP&&) = default;
 
     void push(int);
-    // returns smallest element if !this.empty() or throws exception otherwise
-    int pop();
-    bool isEmpty() const;
+    void pop() noexcept;
+
+    bool isEmpty() const noexcept;
+    const int& top() const;
 
     ~QueueP() = default;
 

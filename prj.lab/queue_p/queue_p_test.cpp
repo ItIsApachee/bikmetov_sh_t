@@ -37,8 +37,10 @@ int main(int argc, char* argv[]) {
     for (auto v: arr)
         queue.push(v);
     arr.resize(0);
-    while (!queue.isEmpty())
-        arr.push_back(queue.pop());
+    while (!queue.isEmpty()) {
+        arr.push_back(queue.top());
+        queue.pop();
+    }
     
     std::cout << "sorted array: ";
     Util::display(std::cout, arr.begin(), arr.end());

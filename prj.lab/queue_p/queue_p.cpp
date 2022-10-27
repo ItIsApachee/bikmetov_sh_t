@@ -47,19 +47,22 @@ void QueueP::push(int value) {
     current->next = move(node);
 }
 
-int QueueP::pop() {
+void QueueP::pop() noexcept {
+    if (isEmpty()) {
+        return;
+    }
+    std::unique_ptr<Node> old_head(move(head));
+    head = move(old_head->next);
+}
+
+const int& QueueP::top() const {
     if (isEmpty()) {
         throw std::out_of_range("can't pop from an empty queue");
     }
-    int result = head->value;
-
-    std::unique_ptr<Node> old_head(move(head));
-    head = move(old_head->next);
-
-    return result;
+    return head->value;
 }
 
-bool QueueP::isEmpty() const {
+bool QueueP::isEmpty() const noexcept {
     // if head is nullptr, then true
     // else false
     return !head;

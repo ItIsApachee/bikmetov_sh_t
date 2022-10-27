@@ -1,4 +1,4 @@
-#include <queue_p/queue_p.h>
+#include <queue_p/queue_p.hpp>
 #include <memory>
 #include <stdexcept>
 #include <utility>
